@@ -1,3 +1,4 @@
+import timeit
 def getSpendingForCategory(lines_read, category_type):
     result = []
     for line_i in lines_read:
@@ -13,4 +14,7 @@ def getSpendingForCategory(lines_read, category_type):
 
 if __name__ == "__main__":
     with open("spending.csv") as file:
-        print(getSpendingForCategory(file.read().splitlines(), "Groceries"))
+        lines_read = file.read().splitlines()
+        time_to_run = timeit.timeit('getSpendingForCategory(lines_read, "Groceries")', number=int(1e6), globals=globals())
+        print(time_to_run)
+        print(getSpendingForCategory(lines_read, "Groceries"))
